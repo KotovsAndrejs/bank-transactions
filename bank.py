@@ -1,20 +1,25 @@
-# 
-# Darbības ar masīviem - https://www.w3schools.com/python/python_arrays.asp
-# 
 
+def deposit(transactions, amount, balance):
+    balance = balance + amount
+    transactions.append(amount)
+    return balance 
+
+def withdraw(transactions, amount, balance):
+    balance = balance - amount
+    transactions.append(-amount)
+    return balance
+
+def check_balance(balance):
+    print("Your balance = ", balance)
+    pass
+
+def print_transactions(transactions):
+    print(transactions)
+    pass
+
+
+balance = 0
 transactions = []
-
-def deposit(transactions, amount):
-    pass
-
-def withdraw(transactions, amount):
-    pass
-
-def check_balance(transactions):
-    pass
-
-def list():
-    pass
 
 while True:
     print("\nBanking Options:")
@@ -27,12 +32,25 @@ while True:
     choice = input("Enter your choice (1-4): ")
 
     if choice == '1':
+        amount = float(input("How much do you want to deposit?"))
+        if amount < 0:
+            print("Write a positive number")
+        elif isinstance(amount, (int, float)):
+            balance = deposit(transactions, amount, balance)
+        
+        else: print("Not a number. Please enter a number.")
         pass
     elif choice == '2':
+        amount = float(input("How much do you want to withdraw?"))
+        if amount > balance:
+            print("You don't have money for this")
+        else: balance = withdraw(transactions, amount, balance)
         pass
     elif choice == '3':
+        check_balance(balance)
         pass
     elif choice == '4':
+        print_transactions(transactions)
         pass
     elif choice == '5':
         print("Exiting the banking system. Thank you!")
